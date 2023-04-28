@@ -1,9 +1,14 @@
 import Image from "next/image";
 
 export default async function Home() {
-  fetch("https://pokeapi.co/api/v2/pokemon/")
-    .then((response) => response.json())
-    .then((data) => console.log(data));
+  const res = await fetch("https://pokeapi.co/api/v2/pokemon/");
+  const data = await res.json();
 
-  return <h1>Hokkaido</h1>;
+  console.log(data);
+  return (
+    <>
+      <h1>{data.count}</h1>
+      <img src={data.results[2].url} width="500" height="600" alt="pokemon" />
+    </>
+  );
 }
