@@ -25,21 +25,42 @@ const page = () => {
     );
   }, []);
 
+  const handleClick = (answer: string) => {
+    if (answer === color) {
+      alert("Correct!");
+      const randomColor = getRandomColor();
+      setColor(randomColor);
+      setAnswers(
+        [randomColor, getRandomColor(), getRandomColor()].sort(
+          () => Math.random() - 0.5,
+        ),
+      );
+    } else {
+      alert("Wrong!");
+    }
+  };
+
   return (
-    <section className="grid min-h-screen place-items-center">
-      <h1>What the HEX?</h1>
-      <div>
-        <div
-          className={`w-64 h-64 rounded-2xl`}
-          style={{ backgroundColor: color }}
-        ></div>
-      </div>
-      <div className="flex gap-10">
-        {answers.map((answer) => (
-          <button className="px-3 py-5 border rounded-2xl" key={answer}>
-            {answer}
-          </button>
-        ))}
+    <section className="min-h-screen ">
+      <div className="pt-32 space-y-10 text-center">
+        <h1 className="text-2xl ">What the HEX?</h1>
+        <div className="grid justify-center gap-10">
+          <div
+            className={`w-64 h-64 rounded-2xl justify-self-center`}
+            style={{ backgroundColor: color }}
+          ></div>
+          <div className="flex gap-10">
+            {answers.map((answer) => (
+              <button
+                className="px-3 py-5 border rounded-2xl"
+                key={answer}
+                onClick={() => handleClick(answer)}
+              >
+                {answer}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

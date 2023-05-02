@@ -1,6 +1,7 @@
 import "./globals.css";
 import Link from "next/link";
-import { Inter } from "next/font/google";
+import { VT323 } from "next/font/google";
+
 import {
   Menubar,
   MenubarContent,
@@ -11,7 +12,7 @@ import {
   MenubarTrigger,
 } from "@/components/ui/menubar";
 
-const inter = Inter({ subsets: ["latin"] });
+const vt323 = VT323({ subsets: ["latin"], weight: ["400"] });
 
 export const metadata = {
   title: "Create Next App",
@@ -26,23 +27,25 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Menubar className="fixed top-0 flex w-full text-white border-none rounded-none bg-white/20 backdrop-blur-3xl">
-        <Link href="/" className="mr-auto">
-          <p>❄️</p>
-        </Link>
-        <MenubarMenu>
-          <MenubarTrigger>Practices</MenubarTrigger>
-          <MenubarContent>
-            <MenubarItem>
-              <Link href="/hex">What the Hex?</Link>
-            </MenubarItem>
-            <MenubarSeparator />
-            <MenubarItem>Share</MenubarItem>
-            <MenubarSeparator />
-            <MenubarItem>Print</MenubarItem>
-          </MenubarContent>
-        </MenubarMenu>
+        <div className="flex items-center w-full max-w-2xl mx-auto">
+          <Link href="/" className="mr-auto">
+            <p>❄️</p>
+          </Link>
+          <MenubarMenu>
+            <MenubarTrigger>Practices</MenubarTrigger>
+            <MenubarContent>
+              <MenubarItem>
+                <Link href="/hex">What the Hex?</Link>
+              </MenubarItem>
+              <MenubarSeparator />
+              <MenubarItem>Share</MenubarItem>
+              <MenubarSeparator />
+              <MenubarItem>Print</MenubarItem>
+            </MenubarContent>
+          </MenubarMenu>
+        </div>
       </Menubar>
-      <body className={`${inter.className} bg-black text-white`}>
+      <body className={`${vt323.className} bg-black text-white`}>
         {children}
       </body>
     </html>
