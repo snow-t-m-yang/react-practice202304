@@ -1,16 +1,7 @@
 import "./globals.css";
-import Link from "next/link";
-import { VT323 } from "next/font/google";
 
-import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarMenu,
-  MenubarSeparator,
-  MenubarShortcut,
-  MenubarTrigger,
-} from "@/components/ui/menubar";
+import { VT323 } from "next/font/google";
+import Nav from "@/components/ui/Nav";
 
 const vt323 = VT323({ subsets: ["latin"], weight: ["400"] });
 
@@ -26,26 +17,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Menubar className="fixed top-0 flex w-full text-white border-none rounded-none bg-white/20 backdrop-blur-3xl">
-        <div className="flex items-center w-full max-w-2xl mx-auto">
-          <Link href="/" className="mr-auto">
-            <p>❄️</p>
-          </Link>
-          <MenubarMenu>
-            <MenubarTrigger>Practices</MenubarTrigger>
-            <MenubarContent>
-              <MenubarItem>
-                <Link href="/hex">What the Hex?</Link>
-              </MenubarItem>
-              <MenubarSeparator />
-              <MenubarItem>Share</MenubarItem>
-              <MenubarSeparator />
-              <MenubarItem>Print</MenubarItem>
-            </MenubarContent>
-          </MenubarMenu>
-        </div>
-      </Menubar>
-      <body className={`${vt323.className} bg-black text-white`}>
+      <Nav />
+      <body className={`${vt323.className} bg-black px-3 text-white`}>
         {children}
       </body>
     </html>
