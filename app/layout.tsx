@@ -1,4 +1,5 @@
 import "./globals.css";
+import Link from "next/link";
 import { Inter } from "next/font/google";
 import {
   Menubar,
@@ -24,14 +25,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Menubar className="fixed top-0 w-full text-white border-none rounded-none bg-white/20 backdrop-blur-3xl">
+      <Menubar className="fixed top-0 flex w-full text-white border-none rounded-none bg-white/20 backdrop-blur-3xl">
+        <Link href="/" className="mr-auto">
+          <p>❄️</p>
+        </Link>
         <MenubarMenu>
-          <MenubarTrigger>File</MenubarTrigger>
+          <MenubarTrigger>Practices</MenubarTrigger>
           <MenubarContent>
             <MenubarItem>
-              New Tab <MenubarShortcut>⌘T</MenubarShortcut>
+              <Link href="/hex">What the Hex?</Link>
             </MenubarItem>
-            <MenubarItem>New Window</MenubarItem>
             <MenubarSeparator />
             <MenubarItem>Share</MenubarItem>
             <MenubarSeparator />
@@ -39,7 +42,9 @@ export default function RootLayout({
           </MenubarContent>
         </MenubarMenu>
       </Menubar>
-      <body className={`${inter.className} pt-10 bg-black`}>{children}</body>
+      <body className={`${inter.className} bg-black text-white`}>
+        {children}
+      </body>
     </html>
   );
 }
