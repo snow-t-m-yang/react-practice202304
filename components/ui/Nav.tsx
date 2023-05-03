@@ -26,7 +26,9 @@ const Nav = () => {
               <Link href="/hex">What the Hex?</Link>
             </MenubarItem>
             <MenubarSeparator />
-            <MenubarItem>Share</MenubarItem>
+            <MenubarItem>
+              <Link href="/search">Search</Link>
+            </MenubarItem>
             <MenubarSeparator />
             <MenubarItem>Print</MenubarItem>
           </MenubarContent>
