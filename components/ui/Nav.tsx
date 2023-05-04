@@ -30,7 +30,9 @@ const Nav = () => {
               <Link href="/search">Search</Link>
             </MenubarItem>
             <MenubarSeparator />
-            <MenubarItem>Print</MenubarItem>
+            <MenubarItem>
+              <Link href="/point">Point</Link>
+            </MenubarItem>
           </MenubarContent>
         </MenubarMenu>
       </div>

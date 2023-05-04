@@ -47,7 +47,7 @@ const Search = () => {
         />
         <button className="px-2 py-2 border rounded-md ">Submit</button>
       </form>
-      <div className="text-4xl text-blue-500">
+      <div className="text-4xl text-blue-500 cursor-pointer">
         {data?.map((item: Synonym) => (
           <p key={item.score} onClick={() => handleClickOnItem(item.word)}>
             {item.word}
