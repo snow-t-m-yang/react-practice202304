@@ -33,6 +33,9 @@ const Nav = () => {
             <MenubarItem>
               <Link href="/point">Point</Link>
             </MenubarItem>
+            <MenubarItem>
+              <Link href="/calculator">Calculator</Link>
+            </MenubarItem>
           </MenubarContent>
         </MenubarMenu>
       </div>
