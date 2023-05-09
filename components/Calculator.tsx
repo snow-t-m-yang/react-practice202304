@@ -17,8 +17,10 @@ const calcuReducer = (state: State, action: Action) => {
   switch (action.type) {
     case "SET_OUTPUT":
       return { output: action.payload };
+
     case "CLEAR_OUTPUT":
       return { output: "0" };
+
     default:
       return state;
   }
@@ -29,9 +31,18 @@ const Calculator: React.FC = () => {
 
   const handleInput = (e: React.MouseEvent<HTMLElement>) => {
     const input = (e.target as HTMLElement)?.textContent ?? "";
+
     if (input === "AC") {
       dispatch({ type: "CLEAR_OUTPUT" });
       return;
+    }
+
+    if (input === "." && state.output.includes(".")) {
+      return;
+    }
+
+    if (input === "." && state.output === "0") {
+      return dispatch({ type: "SET_OUTPUT", payload: state.output + input });
     }
 
     if (state.output === "0") {
@@ -43,12 +54,26 @@ const Calculator: React.FC = () => {
 
   const handleOperator = (e: React.MouseEvent) => {
     const operator = (e.target as HTMLElement)?.textContent ?? "";
-    dispatch({ type: "SET_OUTPUT", payload: `${state.output}${operator}` });
+
+    const lastChar = state.output.slice(-1);
+    const isOperatorInput =
+      lastChar === "+" ||
+      lastChar === "-" ||
+      lastChar === "*" ||
+      lastChar === "/";
+
+    if (isOperatorInput && lastChar !== operator) {
+      dispatch({
+        type: "SET_OUTPUT",
+        payload: state.output.slice(0, -1) + operator,
+      });
+    } else if (!isOperatorInput) {
+      dispatch({ type: "SET_OUTPUT", payload: state.output + operator });
+    }
   };
 
   const handleEqual = () => {
     const expression = state.output.split(/([-+*/])/);
-    console.log(expression);
     let result = Number(expression[0]);
 
     for (let i = 1; i < expression.length; i += 2) {
@@ -59,6 +84,7 @@ const Calculator: React.FC = () => {
         case "+":
           result += operand;
           break;
+
         case "-":
           result -= operand;
           break;
@@ -70,7 +96,6 @@ const Calculator: React.FC = () => {
           break;
       }
     }
-    console.log(expression);
     dispatch({
       type: "SET_OUTPUT",
       payload: (Math.round(result * 100) / 100).toString(),
@@ -82,24 +107,30 @@ const Calculator: React.FC = () => {
       <div className="flex flex-wrap max-w-xl">
         <h1 className="">{state.output}</h1>
       </div>
-      <div className="grid grid-cols-3 text-7xl">
-        <button onClick={handleInput}>0</button>
+      <div className="grid grid-cols-4 gap-10 text-7xl">
+        <button onClick={handleInput} className="col-span-2">
+          AC
+        </button>
+        <button onClick={handleInput} className="col-span-2">
+          .
+        </button>
         <button onClick={handleInput}>1</button>
         <button onClick={handleInput}>2</button>
         <button onClick={handleInput}>3</button>
+        <button onClick={handleOperator}>*</button>
         <button onClick={handleInput}>4</button>
         <button onClick={handleInput}>5</button>
         <button onClick={handleInput}>6</button>
+        <button onClick={handleOperator}>/</button>
         <button onClick={handleInput}>7</button>
         <button onClick={handleInput}>8</button>
         <button onClick={handleInput}>9</button>
         <button onClick={handleOperator}>+</button>
+        <button onClick={handleInput}>0</button>
+        <button onClick={handleEqual} className="col-span-2">
+          =
+        </button>
         <button onClick={handleOperator}>-</button>
-        <button onClick={handleOperator}>*</button>
-        <button onClick={handleOperator}>/</button>
-        <button onClick={handleEqual}>=</button>
-        <button onClick={handleInput}>.</button>
-        <button onClick={handleInput}>AC</button>
       </div>
     </section>
   );
