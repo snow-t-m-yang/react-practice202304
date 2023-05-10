@@ -88,9 +88,11 @@ const Calculator: React.FC = () => {
         case "-":
           result -= operand;
           break;
+
         case "*":
           result *= operand;
           break;
+
         case "/":
           result /= operand;
           break;
