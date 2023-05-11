@@ -26,7 +26,7 @@ const calcuReducer = (state: State, action: Action) => {
   }
 };
 
-const Calculator: React.FC = () => {
+const Calculator = () => {
   const [state, dispatch] = useReducer(calcuReducer, initialState);
 
   const handleInput = (e: React.MouseEvent<HTMLElement>) => {

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import SnowFlake from "../SnowFlake";
 
 import {
   Menubar,
@@ -35,6 +36,9 @@ const Nav = () => {
             </MenubarItem>
             <MenubarItem>
               <Link href="/calculator">Calculator</Link>
+            </MenubarItem>
+            <MenubarItem>
+              <Link href="/snowFlake">SnowFlake Generator</Link>
             </MenubarItem>
           </MenubarContent>
         </MenubarMenu>
