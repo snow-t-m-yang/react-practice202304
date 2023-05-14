@@ -40,6 +40,9 @@ const Nav = () => {
             <MenubarItem>
               <Link href="/snowFlake">SnowFlake Generator</Link>
             </MenubarItem>
+            <MenubarItem>
+              <Link href="/memo">How to memo?</Link>
+            </MenubarItem>
           </MenubarContent>
         </MenubarMenu>
       </div>

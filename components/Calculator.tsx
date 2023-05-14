@@ -48,7 +48,7 @@ const Calculator = () => {
     if (state.output === "0") {
       dispatch({ type: "SET_OUTPUT", payload: input });
     } else {
-      dispatch({ type: "SET_OUTPUT", payload: state.output + input });
+      dispatch({ type: "SET_OUTPUT", payload: state + input });
     }
   };
 
